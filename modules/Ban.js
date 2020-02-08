@@ -1,0 +1,47 @@
+const Discord = require("discord.js");
+const chalk = require('chalk');
+const log = console.log;
+
+module.exports.run = async (bot, message, args) => {
+	const user = message.mentions.users.first();
+    // If we have a user mentioned
+    if (user) {
+      // Now we get the member from the user
+      const member = message.guild.member(user);
+	  const reason = args.slice(1).join(' ');
+      // If the member is in the guild
+      if (member) {
+        /**
+         * Kick the member
+         * Make sure you run this on a member, not a user!
+         * There are big differences between a user and a member
+         */
+		 
+        member.ban(`$reason`).then(() => {
+          // We let the message author know we were able to kick the person
+          message.reply(`Successfully banned ${user.tag} for "${reason}"`);
+        }).catch(err => {
+          // An error happened
+          // This is generally due to the bot not being able to kick the member,
+          // either due to missing permissions or role hierarchy
+          message.reply('I was unable to ban the member');
+          // Log the error
+          console.error(err);
+        });
+      } else {
+        // The mentioned user isn't in this guild
+        message.reply('That user isn\'t in this guild!');
+      }
+    // Otherwise, if no user was mentioned
+    } else {
+      message.reply('You didn\'t mention the user to kick!');
+    }
+console.log(chalk.red('[Bot] ') + "You have used the " + chalk.bold('ban') + " command.")
+}
+
+
+
+
+module.exports.help = {
+    name: "ban" // <<<<<<<<<<<<<<< PUT THE COMMAND NAME HERE NOOB
+}
