@@ -3,7 +3,6 @@ const bot = new Discord.Client();
 const fs = require("fs");
 const chalk = require('chalk');
 const log = console.log;
-const cmdprefix = "-";
 const config = require(`./config.json`)
 bot.commands = new Discord.Collection();
 
@@ -28,17 +27,13 @@ fs.readdir("./modules/", (err, files) => {
 });
 
 bot.on("ready", () => {
-  
-  if (config.license == "") return process.exit();
-  if (config.license == "") return log(chalk.red('[ERROR]') + " You need to set a license.");
   log(chalk.red('[Bot]') + " Activated.");
-
 })
 
 bot.on("message", async message => {
   if (message.author.bot) return;
   if (message.author !== bot.user) return;
-  if (!message.content.startsWith(cmdprefix)) return;
+  if (!message.content.startsWith(config.prefix)) return;
   let prefix = cmdprefix;
   let messageArray = message.content.split(" ")
   let cmd = messageArray[0].toLowerCase();
