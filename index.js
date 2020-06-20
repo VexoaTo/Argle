@@ -34,7 +34,7 @@ bot.on("message", async message => {
   if (message.author.bot) return;
   if (message.author !== bot.user) return;
   if (!message.content.startsWith(config.prefix)) return;
-  let prefix = cmdprefix;
+  let prefix = config.prefix;
   let messageArray = message.content.split(" ")
   let cmd = messageArray[0].toLowerCase();
   let args = messageArray.slice(1);
