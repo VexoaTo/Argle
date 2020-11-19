@@ -32,7 +32,7 @@ bot.on("ready", () => {
 
 bot.on("message", async message => {
   if (message.author.bot) return;
-  if (message.author !== bot.user) return;
+  if (message.author != bot.user) return;
   if (!message.content.startsWith(config.prefix)) return;
   let prefix = config.prefix;
   let messageArray = message.content.split(" ")
