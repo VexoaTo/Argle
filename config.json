@@ -1,6 +1,6 @@
 {
   "token": "",
-  "prefix": "-",
+  "cmdprefix": "-",
   "version": "b1.0.0",
   "webhook": "",
   "spamMSG": "",
