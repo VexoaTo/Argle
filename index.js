@@ -30,11 +30,12 @@ bot.on("ready", () => {
   log(chalk.red('[Bot]') + " Activated.");
 })
 
+
 bot.on("message", async message => {
   if (message.author.bot) return;
   if (message.author != bot.user) return;
-  if (!message.content.startsWith(config.prefix)) return;
-  let prefix = config.prefix;
+  if (!message.content.startsWith(config.cmdprefix)) return;
+  let prefix = config.cmdprefix;
   let messageArray = message.content.split(" ")
   let cmd = messageArray[0].toLowerCase();
   let args = messageArray.slice(1);
